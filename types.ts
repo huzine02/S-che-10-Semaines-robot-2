@@ -37,6 +37,13 @@ export interface DietProfile {
   };
 }
 
+export interface Subscription {
+  id: string;
+  status: 'active' | 'canceled' | 'past_due' | 'trialing';
+  currentPeriodEnd: number;
+  priceId: string;
+}
+
 export interface UserProfile {
   uid: string;
   email: string;
@@ -54,6 +61,9 @@ export interface UserProfile {
   initialWeight?: number;
   initialWaistline?: number;
   guidePdfUrl?: string;
+  // Stripe
+  stripeCustomerId?: string;
+  subscription?: Subscription;
 }
 
 export interface DailyJournal {

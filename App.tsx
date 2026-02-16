@@ -8,6 +8,7 @@ import { SetupDiet } from './pages/SetupDiet';
 import { Dashboard } from './pages/Dashboard';
 import { Journal } from './pages/Journal';
 import { Profile } from './pages/Profile';
+import { Pricing } from './pages/Pricing';
 import { NotFound } from './pages/NotFound';
 import { LoadingScreen } from './components/LoadingScreen';
 
@@ -39,6 +40,7 @@ export default function App() {
         <Routes>
           <Route path="/" element={<Landing />} />
           <Route path="/login" element={<Auth />} />
+          <Route path="/pricing" element={<Pricing />} />
           <Route 
             path="/setup" 
             element={
