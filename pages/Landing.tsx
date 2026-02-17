@@ -1,7 +1,5 @@
 import React, { useState, useEffect, useRef } from 'react';
-import * as ReactRouterDOM from 'react-router-dom';
-
-const { Link } = ReactRouterDOM;
+import { Link } from 'react-router-dom';
 
 export const Landing: React.FC = () => {
   const [timeLeft, setTimeLeft] = useState(15 * 60);

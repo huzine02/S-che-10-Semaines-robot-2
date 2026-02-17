@@ -1,5 +1,5 @@
 import React from 'react';
-import * as ReactRouterDOM from 'react-router-dom';
+import { HashRouter, Routes, Route, Navigate, useLocation } from 'react-router-dom';
 import { AuthProvider, useAuth } from './AuthContext';
 import { Layout } from './components/Layout';
 import { Landing } from './pages/Landing';
@@ -10,8 +10,6 @@ import { Journal } from './pages/Journal';
 import { Profile } from './pages/Profile';
 import { NotFound } from './pages/NotFound';
 import { LoadingScreen } from './components/LoadingScreen';
-
-const { HashRouter, Routes, Route, Navigate, useLocation } = ReactRouterDOM;
 
 const ProtectedRoute: React.FC<{ children: React.ReactNode }> = ({ children }) => {
   const { user, loading, userProfile } = useAuth();

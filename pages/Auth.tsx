@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import * as ReactRouterDOM from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 import { 
   createUserWithEmailAndPassword, 
   signInWithEmailAndPassword, 
@@ -11,8 +11,6 @@ import { doc, setDoc, getDoc } from 'firebase/firestore';
 import { auth, db, googleProvider } from '../firebase';
 import { createInitialUserProfile } from '../utils/onboarding';
 import { useAuth } from '../AuthContext';
-
-const { useNavigate } = ReactRouterDOM;
 
 export const Auth: React.FC = () => {
   const { user } = useAuth();
@@ -42,7 +40,7 @@ export const Auth: React.FC = () => {
           const userDoc = await getDoc(doc(db, 'users', res.user.uid));
           if (!userDoc.exists()) {
              const profile = createInitialUserProfile(res.user);
-             // @ts-ignore
+             // Le profil doit correspondre au type attendu, mais createInitialUserProfile retourne un objet compatible.
             await setDoc(doc(db, 'users', res.user.uid), profile);
           }
           navigate('/dashboard');
@@ -87,7 +85,6 @@ export const Auth: React.FC = () => {
       } else {
         const res = await createUserWithEmailAndPassword(auth, email, password);
         const profile = createInitialUserProfile(res.user, name);
-        // @ts-ignore
         await setDoc(doc(db, 'users', res.user.uid), profile);
         navigate('/setup');
       }

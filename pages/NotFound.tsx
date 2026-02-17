@@ -1,7 +1,5 @@
 import React from 'react';
-import * as ReactRouterDOM from 'react-router-dom';
-
-const { Link } = ReactRouterDOM;
+import { Link } from 'react-router-dom';
 
 export const NotFound: React.FC = () => {
   return (

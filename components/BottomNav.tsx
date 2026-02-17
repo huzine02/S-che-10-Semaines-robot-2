@@ -1,7 +1,5 @@
 import React from 'react';
-import * as ReactRouterDOM from 'react-router-dom';
-
-const { Link, useLocation } = ReactRouterDOM;
+import { Link, useLocation } from 'react-router-dom';
 
 export const BottomNav: React.FC = () => {
   const location = useLocation();
