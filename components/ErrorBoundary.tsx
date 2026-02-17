@@ -1,4 +1,4 @@
-import React, { ErrorInfo, ReactNode } from 'react';
+import React, { Component, ErrorInfo, ReactNode } from 'react';
 
 interface Props {
   children?: ReactNode;
@@ -9,21 +9,24 @@ interface State {
   error: Error | null;
 }
 
-export class ErrorBoundary extends React.Component<Props, State> {
-  public state: State = {
-    hasError: false,
-    error: null
-  };
+export class ErrorBoundary extends Component<Props, State> {
+  constructor(props: Props) {
+    super(props);
+    this.state = {
+      hasError: false,
+      error: null
+    };
+  }
 
-  public static getDerivedStateFromError(error: Error): State {
+  static getDerivedStateFromError(error: Error): State {
     return { hasError: true, error };
   }
 
-  public componentDidCatch(error: Error, errorInfo: ErrorInfo) {
+  componentDidCatch(error: Error, errorInfo: ErrorInfo) {
     console.error("Uncaught error:", error, errorInfo);
   }
 
-  public render() {
+  render() {
     if (this.state.hasError) {
       return (
         <div className="min-h-screen flex flex-col items-center justify-center bg-slate-50 p-6 text-center">
@@ -32,11 +35,11 @@ export class ErrorBoundary extends React.Component<Props, State> {
           <p className="text-slate-500 mb-6 text-sm">Une erreur est survenue. Essayez de rafraîchir la page.</p>
           <button 
             onClick={() => window.location.reload()} 
-            className="bg-[#0F2C59] text-white px-6 py-3 rounded-xl font-bold shadow-lg"
+            className="bg-[#0F2C59] text-white px-6 py-3 rounded-xl font-bold shadow-lg hover:bg-[#163A70] transition-colors"
           >
             Rafraîchir l'application
           </button>
-          <pre className="mt-8 p-4 bg-slate-100 rounded-lg text-xs text-red-500 overflow-auto max-w-full">
+          <pre className="mt-8 p-4 bg-slate-100 rounded-lg text-xs text-red-500 overflow-auto max-w-full text-left">
             {this.state.error?.message}
           </pre>
         </div>
