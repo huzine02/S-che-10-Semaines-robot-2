@@ -153,7 +153,7 @@ export const Journal: React.FC = () => {
   const wo = WORKOUTS[day.workoutIndex % 3];
 
   // Compliance score
-  const vCount = Object.values(day.meals).filter(m => m.validated).length;
+  const vCount = Object.values(day.meals).filter((m: any) => m.validated).length;
   const stacksDone = Object.entries(day.stacks).filter(([k, v]) => v && k !== 'workout').length;
   const stacksTotal = Object.keys(day.stacks).filter(k => k !== 'workout').length;
   const mealScore = isFri ? (vCount >= 2 ? 3 : vCount) : vCount; // Friday: 2 validated = full meal score
